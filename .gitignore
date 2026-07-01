@@ -1,0 +1,12 @@
+# Dependencies
+portfolio-app/node_modules/
+
+# Production Build
+portfolio-app/dist/
+portfolio-app/dist-ssr/
+
+# Local/Scratch files
+scratch_pdf_reader/
+.DS_Store
+Thumbs.db
+*.log

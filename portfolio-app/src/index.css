@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+
+  --color-brand-beige: #FAF8F5;
+  --color-brand-charcoal: #12131a;
+  --color-brand-terracotta: #D36B54;
+  --color-brand-terracotta-dark: #B2533E;
+  --color-brand-pink: #E99D8F;
+  --color-brand-navy: #1B263B;
+  --color-brand-gold: #C5A880;
+
+  --color-bg-light: #FCFBF9;
+  --color-bg-dark: #0B0C10;
+  --color-card-dark: #12131A;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-light text-brand-charcoal dark:bg-bg-dark dark:text-gray-200 font-sans antialiased selection:bg-brand-terracotta selection:text-white transition-colors duration-500 overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight font-medium;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-800 rounded-full hover:bg-gray-400 dark:hover:bg-gray-700;
+  }
+}
+
+/* Custom transitions and utility animations */
+.glassmorphism {
+  @apply bg-white/70 dark:bg-[#0B0C10]/70 backdrop-blur-md border border-black/5 dark:border-white/5;
+}
+
+.vintage-newspaper {
+  background-color: #FAF5EB;
+  color: #1c1c1c;
+  background-image: radial-gradient(#1c1c1c 0.5px, transparent 0.5px), radial-gradient(#1c1c1c 0.5px, #FAF5EB 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  background-blend-mode: overlay;
+  opacity: 0.98;
+}
+
+/* Grid lines for architectural blueprint feel */
+.blueprint-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+.dark .blueprint-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
