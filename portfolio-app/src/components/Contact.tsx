@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Copy, Check } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 
 export const Contact: React.FC = () => {
@@ -22,7 +23,7 @@ export const Contact: React.FC = () => {
       <div className="relative max-w-4xl mx-auto px-6 text-center">
         
         {/* Narrative Closing */}
-        <div className="max-w-2xl mx-auto mb-16 space-y-6">
+        <Reveal className="max-w-2xl mx-auto mb-16 space-y-6">
           <span className="text-xs uppercase tracking-widest text-brand-pink font-semibold">
             Let's Keep it Going
           </span>
@@ -34,10 +35,10 @@ export const Contact: React.FC = () => {
           <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed">
             Maybe this is not a portfolio. Maybe it is a story or a conversation. Either way—if it sparked something, let's connect and build the next chapter together.
           </p>
-        </div>
+        </Reveal>
 
         {/* Contact Actions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-lg mx-auto mb-16">
+        <Reveal delay={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-lg mx-auto mb-16">
           
           {/* Email Card */}
           <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center justify-between group hover:border-brand-pink/30 hover:bg-white/10 transition-all duration-300">
@@ -91,7 +92,7 @@ export const Contact: React.FC = () => {
             </span>
           </div>
 
-        </div>
+        </Reveal>
 
         {/* Footer Notes */}
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-sans">

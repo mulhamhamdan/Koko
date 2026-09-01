@@ -21,12 +21,28 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-bg-light text-brand-charcoal dark:bg-bg-dark dark:text-gray-200 font-sans antialiased selection:bg-brand-terracotta selection:text-white transition-colors duration-500 overflow-x-hidden;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight font-medium;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-terracotta);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar {

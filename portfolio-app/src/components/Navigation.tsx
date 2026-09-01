@@ -23,7 +23,7 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab 
       } else {
         isDarkStored = window.matchMedia('(prefers-color-scheme: dark)').matches;
       }
-    } catch (e) {
+    } catch {
       isDarkStored = window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
     
@@ -49,12 +49,12 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab 
       document.documentElement.classList.add('dark');
       try {
         localStorage.setItem('theme', 'dark');
-      } catch (e) {}
+      } catch {}
     } else {
       document.documentElement.classList.remove('dark');
       try {
         localStorage.setItem('theme', 'light');
-      } catch (e) {}
+      } catch {}
     }
   };
 

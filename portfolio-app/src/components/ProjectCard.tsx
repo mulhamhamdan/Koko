@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import type { Project } from '../data/portfolioData';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -6,9 +7,10 @@ import { ArrowUpRight } from 'lucide-react';
 interface ProjectCardProps {
   project: Project;
   onClick: () => void;
+  index?: number;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, index = 0 }) => {
   // Map ID to public asset paths
   const getImagePath = (id: string) => {
     switch(id) {
@@ -22,10 +24,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) =>
   const isArchitect = project.category === 'architecture';
 
   return (
-    <div 
-      onClick={onClick}
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-card-dark shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full"
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
+      <div 
+        onClick={onClick}
+        className="group relative cursor-pointer overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-card-dark shadow-sm hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/40 hover:-translate-y-1.5 transition-all duration-500 flex flex-col h-full"
+      >
       {/* Visual Thumbnail */}
       <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
         <img 
@@ -84,6 +92,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) =>
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </motion.div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { X, Calendar, MapPin, Briefcase, Cpu, Info } from 'lucide-react';
 import type { Project } from '../data/portfolioData';
 import { BeforeAfterSlider } from './BeforeAfterSlider';
@@ -34,7 +35,12 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
       <div className="absolute inset-0 cursor-zoom-out" onClick={onClose}></div>
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-4xl bg-bg-light dark:bg-bg-dark rounded-2xl overflow-hidden shadow-2xl z-10 border border-black/10 dark:border-white/10 flex flex-col my-8 max-h-[90vh]">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="relative w-full max-w-4xl bg-bg-light dark:bg-bg-dark rounded-2xl overflow-hidden shadow-2xl z-10 border border-black/10 dark:border-white/10 flex flex-col my-8 max-h-[90vh]"
+      >
         
         {/* Header toolbar */}
         <div className="absolute top-4 right-4 z-30">
@@ -207,7 +213,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
         </div>
 
-      </div>
+      </motion.div>
     </div>
   );
 };

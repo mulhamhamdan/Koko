@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { History, ArrowRight, Award } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 
 interface Era {
@@ -111,7 +113,7 @@ export const ResumeTimeline: React.FC = () => {
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="mb-16 text-center md:text-left">
+        <Reveal className="mb-16 text-center md:text-left">
           <span className="text-xs uppercase tracking-widest text-brand-terracotta dark:text-brand-pink font-semibold">
             Background
           </span>
@@ -122,13 +124,13 @@ export const ResumeTimeline: React.FC = () => {
             Browse through my work phases to see how spatial design and visual art direction intersect.
           </p>
           <div className="w-12 h-[2px] bg-brand-terracotta mt-4 mx-auto md:mx-0"></div>
-        </div>
+        </Reveal>
 
         {/* Timeline Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Era Selector (Scrubber Tabs) */}
-          <div className="lg:col-span-4 space-y-4">
+          <Reveal className="lg:col-span-4 space-y-4" delay={0.05}>
             <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider block mb-2">
               Select Phase
             </span>
@@ -143,7 +145,7 @@ export const ResumeTimeline: React.FC = () => {
                     className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
                       isActive 
                         ? 'bg-white dark:bg-[#13141c] border-brand-terracotta/30 dark:border-brand-pink/30 shadow-lg scale-[1.02]' 
-                        : 'bg-transparent border-black/5 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5'
+                        : 'bg-transparent border-black/5 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 hover:-translate-y-0.5'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full mb-2">
@@ -167,11 +169,21 @@ export const ResumeTimeline: React.FC = () => {
                 );
               })}
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Column: Dynamic Narrative Panel */}
-          <div className="lg:col-span-8 bg-white dark:bg-[#13141c] p-6 sm:p-10 rounded-3xl border border-black/5 dark:border-white/5 shadow-sm space-y-8 min-h-[500px] flex flex-col justify-between">
+          <Reveal className="lg:col-span-8" delay={0.12}>
+          <div className="bg-white dark:bg-[#13141c] p-6 sm:p-10 rounded-3xl border border-black/5 dark:border-white/5 shadow-sm space-y-8 min-h-[500px] flex flex-col justify-between">
             
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeEra.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="space-y-8 flex flex-col flex-1"
+              >
             {/* Phase 1: Personal Reflection ("The Why") */}
             <div className="space-y-4">
               <div className="flex items-center gap-2">
@@ -246,7 +258,11 @@ export const ResumeTimeline: React.FC = () => {
               )}
             </div>
 
+              </motion.div>
+            </AnimatePresence>
+
           </div>
+          </Reveal>
 
         </div>
 

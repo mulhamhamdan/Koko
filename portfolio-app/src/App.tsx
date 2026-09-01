@@ -5,6 +5,7 @@ import { ProjectCard } from './components/ProjectCard';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { ResumeTimeline } from './components/ResumeTimeline';
 import { Contact } from './components/Contact';
+import { Reveal } from './components/Reveal';
 import { projectsData } from './data/portfolioData';
 import type { Project } from './data/portfolioData';
 import { Folder } from 'lucide-react';
@@ -33,7 +34,7 @@ function App() {
       <main id="projects" className="py-20 max-w-6xl mx-auto px-6 w-full flex-1">
         
         {/* Section Heading */}
-        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <Reveal className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span className="text-xs uppercase tracking-widest text-brand-terracotta dark:text-brand-pink font-semibold">
               Selected Works
@@ -51,14 +52,15 @@ function App() {
             <Folder className="w-4 h-4 text-brand-terracotta dark:text-brand-pink" />
             <span>Showing {filteredProjects.length} of {projectsData.length} records</span>
           </div>
-        </div>
+        </Reveal>
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
+              index={index}
               onClick={() => setSelectedProject(project)}
             />
           ))}
