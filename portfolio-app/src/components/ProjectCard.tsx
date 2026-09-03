@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { Project } from '../data/portfolioData';
+import { getProjectImage } from '../data/imagePaths';
 import { ArrowUpRight } from 'lucide-react';
 
 
@@ -11,16 +12,6 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, index = 0 }) => {
-  // Map ID to public asset paths
-  const getImagePath = (id: string) => {
-    switch(id) {
-      case 'terez-cafe': return '/assets/terez_cafe_hero.png';
-      case 'abd-al-razaq-olive-oil': return '/assets/olive_oil_hero.png';
-      case 'sarouja-revitalization': return '/assets/sarouja_souq_after.png'; // Use after image as thumbnail
-      default: return 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop';
-    }
-  };
-
   const isArchitect = project.category === 'architecture';
 
   return (
@@ -37,7 +28,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, inde
       {/* Visual Thumbnail */}
       <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
         <img 
-          src={getImagePath(project.id)} 
+          src={getProjectImage(project.id)} 
           alt={project.title} 
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"

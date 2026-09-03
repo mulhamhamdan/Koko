@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Calendar, MapPin, Briefcase, Cpu, Info } from 'lucide-react';
 import type { Project } from '../data/portfolioData';
+import { getProjectImage, saroujaBefore, saroujaAfter } from '../data/imagePaths';
 import { BeforeAfterSlider } from './BeforeAfterSlider';
 import { TowerRotation } from './TowerRotation';
 
@@ -19,15 +20,6 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
       document.body.style.overflow = '';
     };
   }, []);
-
-  const getImagePath = (id: string) => {
-    switch(id) {
-      case 'terez-cafe': return '/assets/terez_cafe_hero.png';
-      case 'abd-al-razaq-olive-oil': return '/assets/olive_oil_hero.png';
-      case 'sarouja-revitalization': return '/assets/sarouja_souq_after.png';
-      default: return 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop';
-    }
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-charcoal/80 backdrop-blur-sm overflow-y-auto">
@@ -58,7 +50,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           {/* Cover Hero Image (if not using interactive slider as cover) */}
           <div className="relative w-full h-[260px] sm:h-[360px] bg-gray-100 dark:bg-gray-900">
             <img 
-              src={getImagePath(project.id)} 
+              src={getProjectImage(project.id, 1200)} 
               alt={project.title} 
               className="w-full h-full object-cover"
             />
@@ -172,8 +164,8 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
                 {project.interactiveType === 'slider' && (
                   <BeforeAfterSlider 
-                    beforeImg="/assets/sarouja_souq_before.png" 
-                    afterImg="/assets/sarouja_souq_after.png" 
+                    beforeImg={saroujaBefore} 
+                    afterImg={saroujaAfter} 
                   />
                 )}
 
